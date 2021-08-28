@@ -6,7 +6,7 @@ services:
     image: grafana/grafana
     restart: always
     expose:
-      - ${GFN_EXPOSE}
+      - "3000"
     external_links:
       - prometheus
     environment:
