@@ -7,8 +7,6 @@ services:
     restart: always
     expose:
       - "3000"
-    external_links:
-      - prometheus
     environment:
       GF_INSTALL_PLUGINS: grafana-clock-panel, grafana-simple-json-datasource
       VIRTUAL_HOST: localhost
@@ -18,9 +16,6 @@ services:
     ports:
       - "9002:3000"
 
-    networks:
-      - webproxy
-      - default
 
   portainer:
     container_name: portainer
@@ -65,9 +60,6 @@ services:
       VIRTUAL_PORT: 8000
       LETSENCRYPT_HOST: localhost
 
-    networks:
-      - webproxy
-      - default
 
   kong_db:
     image: postgres:9.6
@@ -112,9 +104,6 @@ services:
     ports:
       - "9003:1337"
 
-    networks:
-      - webproxy
-      - default
 
   konga_db:
     image: postgres:9.6
@@ -131,9 +120,3 @@ volumes:
   kong_datastore:
   konga_database:
   portainer_data:
-
-networks:
-  webproxy:
-    name: webproxy
-  default:
-    name: kong_network
